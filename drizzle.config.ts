@@ -7,4 +7,10 @@ export default defineConfig ({
     dbCredentials: {
         url: process.env.DATABASE_URL!,
     },
+    out: './src/db/migrations',
+    migrations: {
+        schema: 'public',
+        table: 'migrations',
+        prefix: 'timestamp'
+    }
 })

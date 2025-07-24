@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "serverless offline start --reloadHandler"
+    "dev": "serverless offline start --reloadHandler",
+    "drizzler": "npx drizzle-kit push",
+    "migrate": "npx drizzle-kit migrate"
   },
   "keywords": [],
   "author": "",
