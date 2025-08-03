@@ -42,13 +42,14 @@ export class SignUpController {
         if (userAlreadyExists)
             return conflict({ error: `This email is already in use.` });
 
-        const hashPass
+        const hashedPassword = await hash(data.account.password, 8);
 
         const [user] = await db
             .insert(usersTable)
             .values({
                 ...data,
                 ...data.account,
+                password: hashedPassword,
                 calories: 0,
                 carbohydrates: 0,
                 fats: 0,
