@@ -7,6 +7,7 @@ import { db } from "../db";
 import { usersTable } from "../db/schema";
 import { HttpRequest, HttpResponse } from "../types/Http";
 import { badRequest, conflict, created } from "../utils/http";
+import { signAccessTokenFor } from "../lib/jwt";
 
 const schema = z.object({
     goal: z.enum(["lose", "maintain", "gain"]),
@@ -59,9 +60,10 @@ export class SignUpController {
                 id: usersTable.id,
             });
 
+        const accessToken = signAccessTokenFor(user.id);
 
         return created(
-            { userId: user.id }
+            { accessToken }
         );
     }
 }
