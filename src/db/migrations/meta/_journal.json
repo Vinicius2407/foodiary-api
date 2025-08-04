@@ -8,6 +8,13 @@
       "when": 1753374546814,
       "tag": "20250724162906_init_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1754282715365,
+      "tag": "20250804044515_meals_table",
+      "breakpoints": true
     }
   ]
 }

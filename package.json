@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "serverless offline start --reloadHandler",
     "drizzler": "npx drizzle-kit push",
-    "migrate": "npx drizzle-kit migrate"
+    "migrate": "npx drizzle-kit migrate",
+    "generate": "npx drizzle-kit generate"
   },
   "keywords": [],
   "author": "",
