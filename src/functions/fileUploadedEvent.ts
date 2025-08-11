@@ -7,7 +7,7 @@ export async function handler(event: S3Event) {
         event.Records.map(async record => {
             const command = new SendMessageCommand({
                 QueueUrl: process.env.MEALS_QUEUE_URL,
-                MessageBody: JSON.stringify({ filekey: record.s3.object.key }),
+                MessageBody: JSON.stringify({ fileKey: record.s3.object.key }),
             });
 
             await sqsClient.send(command);
