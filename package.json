@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.862.0",
+    "@aws-sdk/client-sqs": "^3.864.0",
     "@aws-sdk/s3-request-presigner": "^3.862.0",
     "@neondatabase/serverless": "^1.0.1",
     "bcryptjs": "^3.0.2",
