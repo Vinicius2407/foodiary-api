@@ -24,8 +24,7 @@ provider:
           # Resource: !GetAtt UploadsBucket.Arn
           Resource: !Sub '${UploadsBucket.Arn}/*'
         - Effect: Allow
-          Action:
-            - sqs:SendMessage
+          Action: sqs:SendMessage
           Resource: !GetAtt MealsQueue.Arn
 
 package:
@@ -78,6 +77,7 @@ functions:
       - httpApi:
           method: GET
           path: /meals/{mealId}
+
   fileUploadedEvent:
     handler: src/functions/fileUploadedEvent.handler
     events:
@@ -86,6 +86,13 @@ functions:
           event: s3:ObjectCreated:*
           existing: true
           forceDeploy: true
+
+  processMeal:
+    handler: src/functions/processMeal.handler
+    events:
+      - sqs:
+          arn: !GetAtt MealsQueue.Arn
+          batchSize: 2
 
 resources:
   Resources:

@@ -2,12 +2,13 @@ import { and, eq, gte, lte } from "drizzle-orm";
 import z from "zod";
 
 import { db } from "../db";
-import { mealsTable } from "../db/schema";
+import { mealsTable, mealStatus } from "../db/schema";
 import { HttpResponse, ProtectedHttpRequest } from "../types/Http";
 import { badRequest, ok } from "../utils/http";
 
 const schema = z.object({
     date: z.iso.date().transform(dateStr => new Date(dateStr)),
+    status: z.enum(["uploading", "processing", "success", "failed"])
 });
 
 export class ListMealsController {
@@ -31,7 +32,7 @@ export class ListMealsController {
             },
             where: and(
                 eq(mealsTable.userId, userId),
-                eq(mealsTable.status, 'success'),
+                eq(mealsTable.status, data.status),
                 gte(mealsTable.createdAt, data.date),
                 lte(mealsTable.createdAt, endDate),
             ),
